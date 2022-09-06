@@ -21,7 +21,7 @@ export class DateCompareComponent implements OnInit {
     this.todaysDate = new Date();
     this.displayDate = this.datePipe.transform(
       this.todaysDate,
-      'dd/MM/yyyy | hh:mm:ss z'
+      'dd/MM/yyyy || hh:mm:ss z'
     );
   }
 
