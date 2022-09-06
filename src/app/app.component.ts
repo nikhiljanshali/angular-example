@@ -8,9 +8,7 @@ import { CurrencytowordService } from './service/currencytoword.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  name = 'Angular ' + VERSION.major;
-
-  version = VERSION.full;
+  
 
   constructor() {}
 
