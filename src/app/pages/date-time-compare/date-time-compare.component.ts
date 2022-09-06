@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-date-time-compare',
@@ -6,8 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./date-time-compare.component.scss'],
 })
 export class DateTimeCompareComponent implements OnInit {
-  todayDate = new Date();
-  constructor() {}
+  todayDate: string = '';
 
-  ngOnInit() {}
+  constructor(private datePipe: DatePipe) {}
+
+  ngOnInit() {
+    this.todayDate = this.datePipe.transform(new Date(), 'yyyy-MM-dd  h:mm:ss');
+  }
 }
