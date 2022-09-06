@@ -2,15 +2,16 @@
   <div class="col-12">
     <ul class="list-group">
       <li class="list-group-item list-group-item-dark" aria-current="true">
-        <label class="fw-bold">Today's Date : {{ todayDate }}</label>
+        <label class="fw-bold">Today's Date : {{ myDateValue }}</label>
         <div class="input-group mt-3 mb-3">
           <input
             type="text"
             class="form-control"
-            [(ngModel)]="todayDate"
-            placeholder="Enter your amount"
-            aria-label="Enter your amount"
-            aria-describedby="button-addon2"
+            [minDate]="minDate"
+            [maxDate]="maxDate"
+            #dp="bsDatepicker"
+            bsDatepicker
+            [(bsValue)]="myDateValue"
           />
           <button class="btn btn-secondary" type="button" id="button-addon2">
             Test Me

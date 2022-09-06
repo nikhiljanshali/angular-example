@@ -10,6 +10,7 @@ import { HeaderComponent } from './shared/component/header/header.component';
 import { NavTabComponent } from './shared/component/nav-tab/nav-tab.component';
 import { AmountWordComponent } from './pages/amount-word/amount-word.component';
 import { DatePipe } from '@angular/common';
+import { DatepickerModule, BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 @NgModule({
   providers: [CurrencytowordService, DatePipe],
@@ -18,6 +19,8 @@ import { DatePipe } from '@angular/common';
     BrowserModule,
     FormsModule,
     FontAwesomeModule,
+    BsDatepickerModule.forRoot(),
+    DatepickerModule.forRoot(),
   ],
   declarations: [
     AppComponent,
