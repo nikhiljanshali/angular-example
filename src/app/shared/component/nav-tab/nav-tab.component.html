@@ -1,7 +1,7 @@
 <div class="container-fluid pt-3">
   <ul class="nav justify-content-center">
     <li class="nav-item" *ngFor="let item of navidataionLinks">
-      <a class="nav-link" href="item.link">{{ item.title }}</a>
+      <a class="nav-link" [href]="item.link">{{ item.title }}</a>
     </li>
   </ul>
 </div>
