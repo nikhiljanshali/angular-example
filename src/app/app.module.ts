@@ -13,7 +13,12 @@ import { DatePipe } from '@angular/common';
 
 @NgModule({
   providers: [CurrencytowordService, DatePipe],
-  imports: [AppRoutingModule, BrowserModule, FormsModule, FontAwesomeModule],
+  imports: [
+    AppRoutingModule,
+    BrowserModule,
+    FormsModule,
+    FontAwesomeModule,
+  ],
   declarations: [
     AppComponent,
     HeaderComponent,

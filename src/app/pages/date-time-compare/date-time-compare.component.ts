@@ -12,6 +12,6 @@ export class DateTimeCompareComponent implements OnInit {
   constructor(private datePipe: DatePipe) {}
 
   ngOnInit() {
-    this.todayDate = this.datePipe.transform(new Date(), 'yyyy-MM-dd  h:mm:ss');
+    this.todayDate = this.datePipe.transform(new Date(), 'dd/MM/yyyy');
   }
 }
