@@ -10,9 +10,10 @@ import { HeaderComponent } from './shared/component/header/header.component';
 import { NavTabComponent } from './shared/component/nav-tab/nav-tab.component';
 import { AmountWordComponent } from './pages/amount-word/amount-word.component';
 import { DatePipe } from '@angular/common';
+import { DateCompareService } from './service/date-compare.service';
 
 @NgModule({
-  providers: [CurrencytowordService, DatePipe],
+  providers: [CurrencytowordService, DatePipe, DateCompareService],
   imports: [AppRoutingModule, BrowserModule, FormsModule, FontAwesomeModule],
   declarations: [
     AppComponent,

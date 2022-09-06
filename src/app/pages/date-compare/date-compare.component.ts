@@ -1,5 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { CompareValidator } from '../../constant/static-const';
+import { DateCompareService } from '../../service/date-compare.service';
 
 @Component({
   selector: 'app-date-compare',
@@ -8,15 +10,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DateCompareComponent implements OnInit {
   todaysDate = new Date();
+  displayDate: string = '';
 
-  constructor(private datePipe: DatePipe) {}
+  constructor(
+    private datePipe: DatePipe,
+    private dateCompareService: DateCompareService
+  ) {}
 
   ngOnInit() {
-    let aaa = new Date();
+    this.todaysDate = new Date();
+    this.displayDate = this.datePipe.transform(
+      this.todaysDate,
+      'dd/MM/yyyy | hh:mm:ss z'
+    );
+  }
 
-    console.log(aaa);
-    let bbb = this.datePipe.transform(aaa, 'yyyy MM dd | hh:mm:ss z');
-
-    console.log(bbb);
+  public dateCompare(): boolean {
+    console.log(
+      this.dateCompareService.compareInputDateWithTodayDate(
+        this.todaysDate,
+        CompareValidator.LessThan
+      )
+    );
+    return false;
   }
 }

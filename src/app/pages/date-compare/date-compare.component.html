@@ -2,7 +2,24 @@
   <div class="col-12">
     <ul class="list-group">
       <li class="list-group-item list-group-item-dark" aria-current="true">
-        <label class="fw-bold">Today's Date : </label>
+        <label class="fw-bold">Today's Date : {{ displayDate }} </label>
+        <div class="input-group mt-3 mb-3">
+          <input
+            type="text"
+            class="form-control"
+            value="{{ displayDate }}"
+            placeholder="Enter your amount"
+            aria-label="Enter your amount"
+            aria-describedby="button-addon2"
+          />
+          <button
+            type="button"
+            class="btn btn-secondary"
+            (click)="dateCompare()"
+          >
+            Test
+          </button>
+        </div>
       </li>
     </ul>
   </div>
