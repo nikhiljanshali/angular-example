@@ -22,7 +22,6 @@ export class CurrencytowordService {
    * @returns word string of the amount in two currency type. e.g : 59435.21 => Fifty Nine Thousand Four Hundred-Thirty Five Rupeess and Twenty One Paisa Only
    */
   public convertAmoutToWord(amount: number, type: string): string {
-    console.log(amount);
     // varibale declaration
     var currencyToWord: string = '';
     var iniDigit: Array<string> = [];
