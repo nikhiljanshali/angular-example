@@ -118,6 +118,7 @@ export class CurrencytowordService {
     words[700] = 'Seven Hundred';
     words[800] = 'Eight Hundred';
     words[900] = 'Nine Hundred';
+
     var words_string = '';
     var amount = amount.toString();
     var atemp = amount.split('.');
@@ -233,7 +234,7 @@ export class CurrencytowordService {
             n_array[i + 1] != 0 &&
             n_array[i + 2] != 0
           ) {
-            words_string += 'Hundred-';
+            words_string += 'Hundred - ';
           } else if (i == 6 && value != 0) {
             words_string += 'Hundred ';
           }
