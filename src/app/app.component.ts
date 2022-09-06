@@ -9,32 +9,12 @@ import { CurrencytowordService } from './service/currencytoword.service';
 })
 export class AppComponent implements OnInit {
   name = 'Angular ' + VERSION.major;
-  amount: number = 5555.55;
-  indianWord: String = '';
-  americanWord: String = '';
+
   version = VERSION.full;
 
-  constructor(private currencytowordService: CurrencytowordService) {}
+  constructor() {}
 
   ngOnInit(): void {
-    this.indianWord = this.currencytowordService.convertAmoutToWord(
-      this.amount,
-      listCurrencyType.INR
-    );
-    this.americanWord = this.currencytowordService.convertAmoutToWord(
-      this.amount,
-      listCurrencyType.USD
-    );
-  }
-
-  public checkConversion(): void {
-    this.indianWord = this.currencytowordService.convertAmoutToWord(
-      this.amount,
-      listCurrencyType.INR
-    );
-    this.americanWord = this.currencytowordService.convertAmoutToWord(
-      this.amount,
-      listCurrencyType.USD
-    );
+    throw new Error('Method not implemented.');
   }
 }
