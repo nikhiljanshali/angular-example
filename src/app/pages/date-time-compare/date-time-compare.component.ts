@@ -7,11 +7,11 @@ import { DatePipe } from '@angular/common';
   styleUrls: ['./date-time-compare.component.scss'],
 })
 export class DateTimeCompareComponent implements OnInit {
-  todayDate: string = '';
+  todayDate = new Date();
 
   constructor(private datePipe: DatePipe) {}
 
   ngOnInit() {
-    this.todayDate = this.datePipe.transform(new Date(), 'dd/MM/yyyy');
+    // this.todayDate = this.datePipe.transform(new Date(), 'dd/MM/yyyy');
   }
 }
