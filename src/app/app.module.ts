@@ -7,10 +7,11 @@ import { CurrencytowordService } from './service/currencytoword.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { VoterComponent } from './ui/voter/voter.component';
 import { AmountWordComponent } from './ui/amount-word/amount-word.component';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   providers: [CurrencytowordService],
-  imports: [BrowserModule, FormsModule, FontAwesomeModule],
+  imports: [AppRoutingModule, BrowserModule, FormsModule, FontAwesomeModule],
   declarations: [AppComponent, VoterComponent, AmountWordComponent],
   bootstrap: [AppComponent],
 })
