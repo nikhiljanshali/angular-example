@@ -11,10 +11,17 @@ import { NavTabComponent } from './shared/component/nav-tab/nav-tab.component';
 import { AmountWordComponent } from './pages/amount-word/amount-word.component';
 import { DatePipe } from '@angular/common';
 import { DateCompareService } from './service/date-compare.service';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 @NgModule({
   providers: [CurrencytowordService, DatePipe, DateCompareService],
-  imports: [AppRoutingModule, BrowserModule, FormsModule, FontAwesomeModule],
+  imports: [
+    AppRoutingModule,
+    BrowserModule,
+    FormsModule,
+    FontAwesomeModule,
+    BsDatepickerModule,
+  ],
   declarations: [
     AppComponent,
     HeaderComponent,

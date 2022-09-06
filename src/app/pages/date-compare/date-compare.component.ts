@@ -12,6 +12,8 @@ export class DateCompareComponent implements OnInit {
   todaysDate = new Date();
   displayDate: string = '';
 
+  public value: Date;
+
   constructor(
     private datePipe: DatePipe,
     private dateCompareService: DateCompareService
