@@ -12,6 +12,7 @@ export class AppComponent implements OnInit {
   amount: number = 0;
   indianWord: String = '';
   americanWord: String = '';
+  version = VERSION.full;
 
   constructor(private currencytowordService: CurrencytowordService) {}
 
