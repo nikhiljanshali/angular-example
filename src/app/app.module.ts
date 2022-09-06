@@ -8,6 +8,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AppRoutingModule } from './app-routing.module';
 import { HeaderComponent } from './shared/component/header/header.component';
 import { NavTabComponent } from './shared/component/nav-tab/nav-tab.component';
+import { AmountWordComponent } from './pages/amount-word/amount-word.component';
 
 @NgModule({
   providers: [CurrencytowordService],
@@ -16,6 +17,7 @@ import { NavTabComponent } from './shared/component/nav-tab/nav-tab.component';
     AppComponent,
     HeaderComponent,
     NavTabComponent,
+    AmountWordComponent,
   ],
   bootstrap: [AppComponent],
 })

@@ -1,9 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AmountWordComponent } from './pages/amount-word/amount-word.component';
+import { PageNotFoundComponent } from './shared/component/page-not-found/page-not-found.component';
 
 const appRoutes: Routes = [
-  { path: '', redirectTo: '/superheroes', pathMatch: 'full' },
-  // { path: '**', component: PageNotFoundComponent },
+  { path: '', redirectTo: '/', pathMatch: 'full' },
+  { path: 'amountword', component: AmountWordComponent },
+  { path: 'datetimecompare', component: PageNotFoundComponent },
+  { path: '**', component: PageNotFoundComponent },
 ];
 
 @NgModule({
