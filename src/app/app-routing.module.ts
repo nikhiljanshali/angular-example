@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AmountWordComponent } from './pages/amount-word/amount-word.component';
-import { DateTimeCompareComponent } from './pages/date-time-compare/date-time-compare.component';
 import { PageNotFoundComponent } from './shared/component/page-not-found/page-not-found.component';
 
 const appRoutes: Routes = [
