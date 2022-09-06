@@ -7,7 +7,7 @@ import { PageNotFoundComponent } from './shared/component/page-not-found/page-no
 const appRoutes: Routes = [
   { path: '', redirectTo: '/', pathMatch: 'full' },
   { path: 'amountword', component: AmountWordComponent },
-  { path: 'datetimecompare', component: DateTimeCompareComponent },
+  { path: 'datetimecompare', component: PageNotFoundComponent },
   { path: '**', component: PageNotFoundComponent },
 ];
 
