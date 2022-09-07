@@ -9,9 +9,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { HeaderComponent } from './shared/component/header/header.component';
 import { NavTabComponent } from './shared/component/nav-tab/nav-tab.component';
 import { AmountWordComponent } from './pages/amount-word/amount-word.component';
-import { CommonModule, DatePipe } from '@angular/common';
+import { DatePipe } from '@angular/common';
 import { DateCompareService } from './service/date-compare.service';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   providers: [CurrencytowordService, DatePipe, DateCompareService],
