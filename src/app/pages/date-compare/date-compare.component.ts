@@ -16,10 +16,12 @@ export class DateCompareComponent implements OnInit {
    * https://programmingwithswift.com/how-to-compare-dates-with-typescript/
    */
   todaysDate = new Date();
-  displayDate: string = '';
+  compareDate: string = '';
 
   public value: Date;
   public counter: number = 0;
+
+  public TestEnum = CompareValidator;
 
   constructor(
     private datePipe: DatePipe,
@@ -27,28 +29,27 @@ export class DateCompareComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.todaysDate = new Date();
-    this.displayDate = this.datePipe.transform(
+    this.compareDate = this.datePipe.transform(
       this.todaysDate,
-      'dd/MM/yyyy || hh:mm:ss z'
+      'dd/MM/yyyy  hh:mm:ss z'
     );
+    console.log(CompareValidator);
   }
 
   public IncreaseDate(cnt: number): void {
     this.counter = cnt + 1;
-    this.todaysDate = new Date();
-    this.todaysDate.setDate(this.todaysDate.getDate() + this.counter);
-    this.displayDate = this.datePipe.transform(
+    this.todaysDate.setDate(new Date().getDate() + this.counter);
+    this.compareDate = this.datePipe.transform(
       this.todaysDate,
-      'dd/MM/yyyy || hh:mm:ss z'
+      'dd/MM/yyyy  hh:mm:ss z'
     );
   }
 
   public ResetDate(): void {
     this.todaysDate = new Date();
-    this.displayDate = this.datePipe.transform(
+    this.compareDate = this.datePipe.transform(
       this.todaysDate,
-      'dd/MM/yyyy || hh:mm:ss z'
+      'dd/MM/yyyy  hh:mm:ss z'
     );
   }
 

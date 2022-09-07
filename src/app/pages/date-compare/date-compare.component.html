@@ -1,9 +1,37 @@
 <div class="row">
   <div class="col-12">
     <ul class="list-group">
-      <li class="list-group-item list-group-item-info" aria-current="true">
-        <label class="fw-bold mt-2">Compare Date :</label>
+      <li class="list-group-item list-group-item" aria-current="true">
+        <label class="fw-bold mt-2">Today's Date : {{ todaysDate }}</label>
+        <div>
+          <div
+            class="form-check form-check-inline"
+            *ngFor="let enum of TestEnum | keyvalue"
+          >
+            <input
+              class="form-check-input"
+              type="radio"
+              name="inlineRadioOptions"
+              id="inlineRadio1"
+              value="option1"
+            />
+            <label class="form-check-label" for="inlineRadio1">1</label>
+          </div>
+        </div>
+
         <div class="input-group mt-3 mb-3">
+          <span class="input-group-text" id="basic-addon3"
+            >Compare Date :
+          </span>
+          <input
+            type="text"
+            disabled
+            class="form-control"
+            value="{{ compareDate }}"
+            placeholder="Enter your amount"
+            aria-label="Enter your amount"
+            aria-describedby="button-addon2"
+          />
           <button
             class="btn btn-outline-secondary"
             type="button"
@@ -12,15 +40,6 @@
           >
             Increas
           </button>
-          <input
-            type="text"
-            disabled
-            class="form-control"
-            value="{{ displayDate }}"
-            placeholder="Enter your amount"
-            aria-label="Enter your amount"
-            aria-describedby="button-addon2"
-          />
           <button
             class="btn btn-outline-secondary"
             type="button"
