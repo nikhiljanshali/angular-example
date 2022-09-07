@@ -16,6 +16,7 @@ export class DateCompareComponent implements OnInit {
   displayDate: string = '';
 
   public value: Date;
+  public counter: number = 1;
 
   constructor(
     private datePipe: DatePipe,
@@ -30,7 +31,8 @@ export class DateCompareComponent implements OnInit {
     );
   }
 
-  public IncreaseDate(): void {
+  public IncreaseDate(cnt: number): void {
+    cnt++;
     this.todaysDate = new Date();
     this.todaysDate.setDate(this.todaysDate.getDate() + 1);
     this.displayDate = this.datePipe.transform(
