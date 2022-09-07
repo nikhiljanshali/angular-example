@@ -21,7 +21,7 @@ export class DateCompareComponent implements OnInit {
   public value: Date;
   public counter: number = 0;
 
-  public _compareValidator: { id: string; name: string }[] = [];
+  public _compareValidator: Array<{ id: string; name: string }> = [];
 
   constructor(
     private datePipe: DatePipe,
@@ -33,11 +33,11 @@ export class DateCompareComponent implements OnInit {
       this.todaysDate,
       'dd/MM/yyyy  hh:mm:ss z'
     );
-
     for (var n in CompareValidator) {
+      console.log(CompareValidator[n]);
+      console.log(n);
       this._compareValidator.push({ id: <any>CompareValidator[n], name: n });
     }
-    console.log(this._compareValidator);
   }
 
   public IncreaseDate(cnt: number): void {

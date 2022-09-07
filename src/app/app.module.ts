@@ -13,6 +13,7 @@ import { DatePipe } from '@angular/common';
 import { DateCompareService } from './service/date-compare.service';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { CommonModule } from '@angular/common';
+import { DateCompareComponent } from './pages/date-compare/date-compare.component';
 
 @NgModule({
   providers: [CurrencytowordService, DatePipe, DateCompareService],
@@ -29,6 +30,7 @@ import { CommonModule } from '@angular/common';
     HeaderComponent,
     NavTabComponent,
     AmountWordComponent,
+    DateCompareComponent,
   ],
   bootstrap: [AppComponent],
 })
