@@ -35,9 +35,7 @@ export class DateCompareComponent implements OnInit {
     );
 
     for (var n in CompareValidator) {
-      // if (typeof CompareValidator[n] === 'number') {
       this._compareValidator.push({ id: <any>CompareValidator[n], name: n });
-      // }
     }
     console.log(this._compareValidator);
   }
