@@ -21,7 +21,7 @@ export class DateCompareComponent implements OnInit {
   public value: Date;
   public counter: number = 0;
 
-  public _compareValidator: { id: number; name: string }[] = [];
+  public _compareValidator: { id: string; name: string }[] = [];
 
   constructor(
     private datePipe: DatePipe,
@@ -33,6 +33,7 @@ export class DateCompareComponent implements OnInit {
       this.todaysDate,
       'dd/MM/yyyy  hh:mm:ss z'
     );
+
     for (var n in CompareValidator) {
       // if (typeof CompareValidator[n] === 'number') {
       this._compareValidator.push({ id: <any>CompareValidator[n], name: n });
