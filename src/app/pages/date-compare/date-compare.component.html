@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-12">
     <ul class="list-group">
-      <li class="list-group-item list-group-item-dark" aria-current="true">
+      <li class="list-group-item list-group-item-info" aria-current="true">
         <label class="fw-bold mt-2">Compare Date :</label>
         <div class="input-group mt-3 mb-3">
           <button
@@ -10,7 +10,7 @@
             id="button-addon1"
             (click)="IncreaseDate(counter)"
           >
-            +
+            Increas
           </button>
           <input
             type="text"
@@ -22,8 +22,16 @@
             aria-describedby="button-addon2"
           />
           <button
+            class="btn btn-outline-secondary"
             type="button"
-            class="btn btn-secondary"
+            (click)="ResetDate()"
+          >
+            Reset
+          </button>
+
+          <button
+            type="button"
+            class="btn btn-outline-secondary"
             (click)="CheckComparison()"
           >
             Test

@@ -12,6 +12,9 @@ import { DateCompareService } from '../../service/date-compare.service';
   styleUrls: ['./date-compare.component.scss'],
 })
 export class DateCompareComponent implements OnInit {
+  /**
+   * https://programmingwithswift.com/how-to-compare-dates-with-typescript/
+   */
   todaysDate = new Date();
   displayDate: string = '';
 
@@ -32,9 +35,17 @@ export class DateCompareComponent implements OnInit {
   }
 
   public IncreaseDate(cnt: number): void {
-    cnt = cnt +1;
+    this.counter = cnt + 1;
     this.todaysDate = new Date();
-    this.todaysDate.setDate(this.todaysDate.getDate() + cnt);
+    this.todaysDate.setDate(this.todaysDate.getDate() + this.counter);
+    this.displayDate = this.datePipe.transform(
+      this.todaysDate,
+      'dd/MM/yyyy || hh:mm:ss z'
+    );
+  }
+
+  public ResetDate(): void {
+    this.todaysDate = new Date();
     this.displayDate = this.datePipe.transform(
       this.todaysDate,
       'dd/MM/yyyy || hh:mm:ss z'
