@@ -34,7 +34,7 @@ export class DateCompareComponent implements OnInit {
   public IncreaseDate(cnt: number): void {
     cnt++;
     this.todaysDate = new Date();
-    this.todaysDate.setDate(this.todaysDate.getDate() + 1);
+    this.todaysDate.setDate(this.todaysDate.getDate() + cnt);
     this.displayDate = this.datePipe.transform(
       this.todaysDate,
       'dd/MM/yyyy || hh:mm:ss z'
