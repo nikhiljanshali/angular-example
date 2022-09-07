@@ -15,9 +15,8 @@ export class AmountWordComponent implements OnInit {
   constructor(private currencytowordService: CurrencytowordService) {}
 
   ngOnInit(): void {
-    this.indianWord = this.currencytowordService.convertAmoutToWord(
-      this.amount,
-      listCurrencyType.INR
+    this.indianWord = this.currencytowordService.convertAmountToIndianWord(
+      this.amount.toString()
     );
     this.americanWord = this.currencytowordService.convertAmoutToWord(
       this.amount,
@@ -26,9 +25,8 @@ export class AmountWordComponent implements OnInit {
   }
 
   public checkConversion(): void {
-    this.indianWord = this.currencytowordService.convertAmoutToWord(
-      this.amount,
-      listCurrencyType.INR
+    this.indianWord = this.currencytowordService.convertAmountToIndianWord(
+      this.amount.toString()
     );
     this.americanWord = this.currencytowordService.convertAmoutToWord(
       this.amount,

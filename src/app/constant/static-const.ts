@@ -1,6 +1,7 @@
 export enum listCurrencyType {
   USD = 'USD',
   INR = 'INR',
+  INRHINDI = 'HINDI',
 }
 
 export enum listCurrencyWord {
