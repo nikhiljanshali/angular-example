@@ -14,9 +14,15 @@ import { DateCompareService } from './service/date-compare.service';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { CommonModule } from '@angular/common';
 import { DateCompareComponent } from './pages/date-compare/date-compare.component';
+import { ConversionService } from './service/conversion.service';
 
 @NgModule({
-  providers: [CurrencytowordService, DatePipe, DateCompareService],
+  providers: [
+    CurrencytowordService,
+    DatePipe,
+    DateCompareService,
+    ConversionService,
+  ],
   imports: [
     AppRoutingModule,
     BrowserModule,

@@ -4,6 +4,7 @@ import {
   CompareValidator,
   CompareValueValidator,
 } from '../../constant/static-const';
+import { ConversionService } from '../../service/conversion.service';
 import { DateCompareService } from '../../service/date-compare.service';
 
 @Component({
@@ -22,10 +23,12 @@ export class DateCompareComponent implements OnInit {
   public counter: number = 0;
 
   public _compareValidator: Array<{ id: string; name: string }> = [];
+  public selected: any;
 
   constructor(
     private datePipe: DatePipe,
-    private dateCompareService: DateCompareService
+    private dateCompareService: DateCompareService,
+    private conversionService: ConversionService
   ) {}
 
   ngOnInit() {
@@ -33,13 +36,14 @@ export class DateCompareComponent implements OnInit {
       this.todaysDate,
       'dd/MM/yyyy  hh:mm:ss z'
     );
-    for (var n in CompareValidator) {
-      console.log(CompareValidator[n]);
-      console.log(n);
-      this._compareValidator.push({ id: <any>CompareValidator[n], name: n });
-    }
+
+    this._compareValidator =
+      this.conversionService.convertEnumToKeyValuePairObject(CompareValidator);
   }
 
+  /**
+   * increate date
+   */
   public IncreaseDate(cnt: number): void {
     this.counter = cnt + 1;
     this.todaysDate.setDate(new Date().getDate() + this.counter);
@@ -49,14 +53,21 @@ export class DateCompareComponent implements OnInit {
     );
   }
 
+  /**
+   * rest date
+   */
   public ResetDate(): void {
     this.todaysDate = new Date();
     this.compareDate = this.datePipe.transform(
       this.todaysDate,
       'dd/MM/yyyy  hh:mm:ss z'
     );
+    console.clear();
   }
 
+  /**
+   * depricated function due to button commented
+   */
   public CheckComparison(): boolean {
     let dateCompare =
       this.dateCompareService.compareInputDateWithTodayDate(
@@ -72,5 +83,43 @@ export class DateCompareComponent implements OnInit {
       ) == CompareValueValidator.$Equal;
     console.info(timeCompare);
     return false;
+  }
+
+  /**
+   * option selection changes
+   */
+  public onOptionsSelected(): void {
+    if (this.selected.id == CompareValidator.EqualTo) {
+      let dateCompare =
+        this.dateCompareService.compareInputDateWithTodayDate(
+          this.todaysDate,
+          CompareValidator.EqualTo
+        ) == CompareValueValidator.$Equal;
+      console.info(dateCompare);
+    }
+    if (this.selected.id == CompareValidator.StrictEqualTo) {
+      let dateCompare =
+        this.dateCompareService.compareInputDateWithTodayDate(
+          this.todaysDate,
+          CompareValidator.StrictEqualTo
+        ) == CompareValueValidator.$Equal;
+      console.info(dateCompare);
+    }
+    if (this.selected.id == CompareValidator.GreaterThan) {
+      let dateCompare =
+        this.dateCompareService.compareInputDateWithTodayDate(
+          this.todaysDate,
+          CompareValidator.GreaterThan
+        ) == CompareValueValidator.$GreaterThan;
+      console.info(dateCompare);
+    }
+    if (this.selected.id == CompareValidator.LessThan) {
+      let dateCompare =
+        this.dateCompareService.compareInputDateWithTodayDate(
+          this.todaysDate,
+          CompareValidator.LessThan
+        ) == CompareValueValidator.$LessThan;
+      console.info(dateCompare);
+    }
   }
 }

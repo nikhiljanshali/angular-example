@@ -7,11 +7,17 @@ import {
 
 @Injectable()
 export class DateCompareService {
+  /**
+   * static varibale
+   */
   private compareValidator = CompareValidator;
   private compareValueValidator = CompareValueValidator;
 
   constructor(private datePipe: DatePipe) {}
 
+  /**
+   * compare input date with current date
+   */
   public compareInputDateWithTodayDate(
     inputDate: Date,
     compareType: string
@@ -61,6 +67,9 @@ export class DateCompareService {
     return flag;
   }
 
+  /**
+   * compare input time with current time
+   */
   public compareInputTimeWithCurrentTime(
     inputDate: Date,
     compareType: string

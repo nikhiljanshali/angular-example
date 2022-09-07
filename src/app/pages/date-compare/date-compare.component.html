@@ -3,12 +3,16 @@
     <ul class="list-group">
       <li class="list-group-item list-group-item" aria-current="true">
         <label class="fw-bold mt-2">Today's Date : {{ todaysDate }}</label>
-        <div *ngFor="let item of _compareValidator">{{ item.name }}</div>
 
         <div class="input-group mt-3 mb-3">
-          <span class="input-group-text" id="basic-addon3"
-            >Compare Date :
-          </span>
+          <button
+            class="btn btn-outline-secondary"
+            type="button"
+            id="button-addon1"
+            (click)="IncreaseDate(counter)"
+          >
+            Increas
+          </button>
           <input
             type="text"
             disabled
@@ -18,14 +22,30 @@
             aria-label="Enter your amount"
             aria-describedby="button-addon2"
           />
-          <button
-            class="btn btn-outline-secondary"
-            type="button"
-            id="button-addon1"
-            (click)="IncreaseDate(counter)"
+          <select
+            class="form-select"
+            id="inputGroupSelect01"
+            aria-label="Default select example"
+            [(ngModel)]="selected"
+            name="status"
+            placeholder="select"
+            (ngModelChange)="onOptionsSelected()"
           >
-            Increas
-          </button>
+            <option selected>Choose...</option>
+            <option
+              *ngFor="let catalog of _compareValidator"
+              [ngValue]="catalog"
+            >
+              {{ catalog.name }}
+            </option>
+          </select>
+          <!-- <button
+            type="button"
+            class="btn btn-outline-secondary"
+            (click)="CheckComparison()"
+          >
+            Test
+          </button> -->
           <button
             class="btn btn-outline-secondary"
             type="button"
@@ -33,22 +53,7 @@
           >
             Reset
           </button>
-
-          <button
-            type="button"
-            class="btn btn-outline-secondary"
-            (click)="CheckComparison()"
-          >
-            Test
-          </button>
         </div>
-        <!-- <input
-          type="text"
-          class="form-control"
-          [(ngModel)]="value"
-          (ngModelChange)="onValueChange($event)"
-          bsDatepicker
-        /> -->
       </li>
     </ul>
   </div>
