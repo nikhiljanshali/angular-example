@@ -2,8 +2,16 @@
   <div class="col-12">
     <ul class="list-group">
       <li class="list-group-item list-group-item-dark" aria-current="true">
-        <label class="fw-bold">Today's Date : {{ displayDate }} </label>
+        <label class="fw-bold mt-2">Compare Date :</label>
         <div class="input-group mt-3 mb-3">
+          <button
+            class="btn btn-outline-secondary"
+            type="button"
+            id="button-addon1"
+            (click)="IncreaseDate()"
+          >
+            +
+          </button>
           <input
             type="text"
             disabled
@@ -16,7 +24,7 @@
           <button
             type="button"
             class="btn btn-secondary"
-            (click)="dateCompare()"
+            (click)="CheckComparison()"
           >
             Test
           </button>

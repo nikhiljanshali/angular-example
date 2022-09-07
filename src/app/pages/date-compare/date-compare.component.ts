@@ -1,6 +1,9 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { CompareValidator } from '../../constant/static-const';
+import {
+  CompareValidator,
+  CompareValueValidator,
+} from '../../constant/static-const';
 import { DateCompareService } from '../../service/date-compare.service';
 
 @Component({
@@ -27,13 +30,29 @@ export class DateCompareComponent implements OnInit {
     );
   }
 
-  public dateCompare(): boolean {
-    console.log(
+  public IncreaseDate(): void {
+    this.todaysDate = new Date();
+    this.todaysDate.setDate(this.todaysDate.getDate() + 1);
+    this.displayDate = this.datePipe.transform(
+      this.todaysDate,
+      'dd/MM/yyyy || hh:mm:ss z'
+    );
+  }
+
+  public CheckComparison(): boolean {
+    let dateCompare =
       this.dateCompareService.compareInputDateWithTodayDate(
         this.todaysDate,
-        CompareValidator.LessThan
-      )
-    );
+        CompareValidator.EqualTo
+      ) == CompareValueValidator.$Equal;
+    console.info(dateCompare);
+
+    let timeCompare =
+      this.dateCompareService.compareInputTimeWithCurrentTime(
+        this.todaysDate,
+        CompareValidator.EqualTo
+      ) == CompareValueValidator.$Equal;
+    console.info(timeCompare);
     return false;
   }
 }
