@@ -182,7 +182,7 @@ export class CurrencytowordService {
       }
     }
     if (type === listCurrencyType.INR) {
-      if (n_length <= 9) {
+      if (n_length <= 11) {
         var n_array = new Array(0, 0, 0, 0, 0, 0, 0, 0, 0);
         var received_n_array = new Array();
         for (var i = 0; i < n_length; i++) {

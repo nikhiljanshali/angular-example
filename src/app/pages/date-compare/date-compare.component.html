@@ -1,9 +1,8 @@
 <div class="row">
-  <div class="col-12">
+  <div class="col-12 p-5">
     <ul class="list-group">
       <li class="list-group-item list-group-item" aria-current="true">
         <label class="fw-bold mt-2">Today's Date : {{ todaysDate }}</label>
-
         <div class="input-group mt-3 mb-3">
           <button
             class="btn btn-outline-secondary"
@@ -22,6 +21,14 @@
             aria-label="Enter your amount"
             aria-describedby="button-addon2"
           />
+          <button
+            class="btn btn-outline-secondary"
+            type="button"
+            id="button-addon1"
+            (click)="DecreaseDate(counter)"
+          >
+            Decrease
+          </button>
           <select
             class="form-select"
             id="inputGroupSelect01"
@@ -54,6 +61,9 @@
             Reset
           </button>
         </div>
+      </li>
+      <li class="list-group-item list-group-item" aria-current="true">
+        <div>Date Match with {{ dataMatch }} :: {{ dateCompare }}</div>
       </li>
     </ul>
   </div>

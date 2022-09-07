@@ -25,6 +25,9 @@ export class DateCompareComponent implements OnInit {
   public _compareValidator: Array<{ id: string; name: string }> = [];
   public selected: any;
 
+  public dateCompare: any;
+  public dataMatch: any;
+
   constructor(
     private datePipe: DatePipe,
     private dateCompareService: DateCompareService,
@@ -46,6 +49,18 @@ export class DateCompareComponent implements OnInit {
    */
   public IncreaseDate(cnt: number): void {
     this.counter = cnt + 1;
+    this.todaysDate.setDate(new Date().getDate() + this.counter);
+    this.compareDate = this.datePipe.transform(
+      this.todaysDate,
+      'dd/MM/yyyy  hh:mm:ss z'
+    );
+  }
+
+  /**
+   * Decrease date
+   */
+  public DecreaseDate(cnt: number): void {
+    this.counter = cnt - 1;
     this.todaysDate.setDate(new Date().getDate() + this.counter);
     this.compareDate = this.datePipe.transform(
       this.todaysDate,
@@ -89,37 +104,38 @@ export class DateCompareComponent implements OnInit {
    * option selection changes
    */
   public onOptionsSelected(): void {
+    this.dataMatch = this.selected.name;
     if (this.selected.id == CompareValidator.EqualTo) {
-      let dateCompare =
+      this.dateCompare =
         this.dateCompareService.compareInputDateWithTodayDate(
           this.todaysDate,
           CompareValidator.EqualTo
         ) == CompareValueValidator.$Equal;
-      console.info(dateCompare);
+      console.info(this.dateCompare);
     }
     if (this.selected.id == CompareValidator.StrictEqualTo) {
-      let dateCompare =
+      this.dateCompare =
         this.dateCompareService.compareInputDateWithTodayDate(
           this.todaysDate,
           CompareValidator.StrictEqualTo
         ) == CompareValueValidator.$Equal;
-      console.info(dateCompare);
+      console.info(this.dateCompare);
     }
     if (this.selected.id == CompareValidator.GreaterThan) {
-      let dateCompare =
+      this.dateCompare =
         this.dateCompareService.compareInputDateWithTodayDate(
           this.todaysDate,
           CompareValidator.GreaterThan
         ) == CompareValueValidator.$GreaterThan;
-      console.info(dateCompare);
+      console.info(this.dateCompare);
     }
     if (this.selected.id == CompareValidator.LessThan) {
-      let dateCompare =
+      this.dateCompare =
         this.dateCompareService.compareInputDateWithTodayDate(
           this.todaysDate,
           CompareValidator.LessThan
         ) == CompareValueValidator.$LessThan;
-      console.info(dateCompare);
+      console.info(this.dateCompare);
     }
   }
 }
