@@ -17,8 +17,8 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
   providers: [CurrencytowordService, DatePipe, DateCompareService],
   imports: [
     AppRoutingModule,
-    CommonModule,
     BrowserModule,
+    CommonModule,
     FormsModule,
     FontAwesomeModule,
     BsDatepickerModule,
