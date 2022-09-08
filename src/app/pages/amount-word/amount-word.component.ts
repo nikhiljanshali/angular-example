@@ -8,7 +8,7 @@ import { CurrencytowordService } from '../../service/currencytoword.service';
   styleUrls: ['./amount-word.component.scss'],
 })
 export class AmountWordComponent implements OnInit {
-  amount: string = '5';
+  amount: string = '55';
   // amount: string = '92,233,720,368,547,800.95';
   indianWord: String = '';
   americanWord: String = '';

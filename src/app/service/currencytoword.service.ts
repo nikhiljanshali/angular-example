@@ -272,7 +272,7 @@ export class CurrencytowordService {
                       ' Hundred' +
                       (0 != Number(price[digitIdx + 1]) &&
                       0 != Number(price[digitIdx + 2])
-                        ? ' And '
+                        ? ' and '
                         : '')
                   : ''
               );
@@ -333,7 +333,7 @@ export class CurrencytowordService {
                       ' Hundred' +
                       (0 != Number(price[digitIdx + 1]) &&
                       0 != Number(price[digitIdx + 2])
-                        ? ' And'
+                        ? ' and'
                         : '')
                   : ''
               );
@@ -373,7 +373,7 @@ export class CurrencytowordService {
         }
         fstr = words2.reverse().join('');
         fstr = fstr + ' Paisa Only';
-        pstr = pstr + ' And';
+        pstr = pstr + ' and';
       } else {
         pstr = pstr + ' Only';
       }
@@ -398,7 +398,7 @@ export class CurrencytowordService {
     var words;
     var pwords;
     var fwords;
-    var and = ' And';
+    var and = ' and';
 
     /* Remove spaces and commas */
     var pstr = '';
@@ -524,16 +524,13 @@ export class CurrencytowordService {
           }
 
           /* Add 'and' string after units or tens integer if: */
-          console.log(ints[1]);
-          if (ints[1]) {
+          if (ints[0] || ints[1]) {
             /* Chunk has a hundreds integer or chunk is the first of multiple chunks */
             if (ints[2] || (!i && chunksLen)) {
-              pwords.push(and);
+              // pwords.push(and);
             }
           }
-          if (ints[0]) {
-            pwords = pwords;
-          }
+
           /* Add hundreds word if array item exists */
           if ((word = units[ints[2]])) {
             pwords.push(word + ' Hundred');
@@ -544,6 +541,7 @@ export class CurrencytowordService {
       pwords += ' Dollers ';
     }
 
+    /** Fraction */
     if (fstr != null && fstr != undefined) {
       start = fstr.length;
       chunks = [];
