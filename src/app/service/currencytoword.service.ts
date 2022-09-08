@@ -396,79 +396,84 @@ export class CurrencytowordService {
       i,
       word,
       words,
-      and = 'and';
+      and = 'And';
 
     /* Remove spaces and commas */
+    var pstr = '';
+    var fstr = '';
+    var array = [];
     string = string.replace(/[, ]/g, '');
-
+    array = string.split('.');
+    pstr = array[0];
+    fstr = array[1];
     /* Is number zero? */
-    if (parseInt(string) === 0) {
+    if (parseInt(pstr) === 0) {
       return 'zero';
     }
 
     /* Array of units as words */
     units = [
       '',
-      'one',
-      'two',
-      'three',
-      'four',
-      'five',
-      'six',
-      'seven',
-      'eight',
-      'nine',
-      'ten',
-      'eleven',
-      'twelve',
-      'thirteen',
-      'fourteen',
-      'fifteen',
-      'sixteen',
-      'seventeen',
-      'eighteen',
-      'nineteen',
+      'One',
+      'Two',
+      'Three',
+      'Four',
+      'Five',
+      'Six',
+      'Seven',
+      'Eight',
+      'Nine',
+      'Ten',
+      'Eleven',
+      'Twelve',
+      'Thirteen',
+      'Fourteen',
+      'Fifteen',
+      'Sixteen',
+      'Seventeen',
+      'Eighteen',
+      'Nineteen',
     ];
 
     /* Array of tens as words */
     tens = [
       '',
       '',
-      'twenty',
-      'thirty',
-      'forty',
-      'fifty',
-      'sixty',
-      'seventy',
-      'eighty',
-      'ninety',
+      'Twenty',
+      'Thirty',
+      'Forty',
+      'Fifty',
+      'Sixty',
+      'Seventy',
+      'Eighty',
+      'Ninety',
     ];
 
     /* Array of scales as words */
     scales = [
       '',
-      'thousand',
-      'million',
-      'billion',
-      'trillion',
-      'quadrillion',
-      'quintillion',
-      'sextillion',
-      'septillion',
-      'octillion',
-      'nonillion',
-      'decillion',
-      'undecillion',
-      'duodecillion',
-      'tredecillion',
-      'quatttuor-decillion',
-      'quindecillion',
-      'sexdecillion',
-      'septen-decillion',
-      'octodecillion',
-      'novemdecillion',
-      'vigintillion',
-      'centillion',
+      'Thousand',
+      'Million',
+      'Billion',
+      'Trillion',
+      'Quadrillion',
+      'Quintillion',
+      'Sextillion',
+      'Septillion',
+      'Octillion',
+      'Nonillion',
+      'Decillion',
+      'Undecillion',
+      'Duodecillion',
+      'Tredecillion',
+      'Quatttuor-decillion',
+      'Quindecillion',
+      'Sexdecillion',
+      'Septen-decillion',
+      'Octodecillion',
+      'Novemdecillion',
+      'Vigintillion',
+      'Centillion',
     ];
 
     /* Split user argument into 3 digit chunks from right to left */
@@ -524,11 +529,11 @@ export class CurrencytowordService {
 
         /* Add hundreds word if array item exists */
         if ((word = units[ints[2]])) {
-          words.push(word + ' hundred');
+          words.push(word + ' Hundred');
         }
       }
     }
-    
+
     return words.reverse().join(' ');
   }
 }
