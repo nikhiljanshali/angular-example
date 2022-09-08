@@ -183,71 +183,10 @@ export class CurrencytowordService {
       }
       return words_string;
     }
-    /*if (type === listCurrencyType.INR) {
-      if (n_length <= 11) {
-        var n_array = new Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-        var received_n_array = new Array();
-        for (var i = 0; i < n_length; i++) {
-          received_n_array[i] = number.substr(i, 1);
-        }
-        for (var i = 9 - n_length, j = 0; i < 9; i++, j++) {
-          n_array[i] = received_n_array[j];
-        }
-        for (var i = 0, j = 1; i < 9; i++, j++) {
-          if (i == 0 || i == 2 || i == 4 || i == 7) {
-            if (n_array[i] == 1) {
-              n_array[j] = 10 + parseInt(n_array[j].toString());
-              n_array[i] = 0;
-            }
-          }
-        }
-        var value = 0;
-        for (var i = 0; i < 11; i++) {
-          if (i == 0 || i == 2 || i == 4 || i == 7 || i == 9) {
-            value = Number(n_array[i]) * 10;
-          } else {
-            value = Number(n_array[i]);
-          }
-          if (value != 0) {
-            words_string += words[value] + ' ';
-          }
-          if (
-            (i == 1 && value != 0) ||
-            (i == 0 && value != 0 && n_array[i + 1] == 0)
-          ) {
-            words_string += 'Crores ';
-          }
-          if (
-            (i == 3 && value != 0) ||
-            (i == 2 && value != 0 && n_array[i + 1] == 0)
-          ) {
-            words_string += 'Lakhs ';
-          }
-          if (
-            (i == 5 && value != 0) ||
-            (i == 4 && value != 0 && n_array[i + 1] == 0)
-          ) {
-            words_string += 'Thousand ';
-          }
-          if (
-            i == 6 &&
-            value != 0 &&
-            n_array[i + 1] != 0 &&
-            n_array[i + 2] != 0
-          ) {
-            words_string += 'Hundred - ';
-          } else if (i == 6 && value != 0) {
-            words_string += 'Hundred ';
-          }
-        }
-        words_string = words_string.split('  ').join(' ');
-      }
-    }*/
   }
 
   public convertAmountToIndianWord(amount: string) {
-    var price = amount;
-    price = price.toString();
+    amount = amount.toString();
     var sglDigit = [
         'Zero',
         'One',
@@ -297,115 +236,153 @@ export class CurrencytowordService {
       };
 
     var str = '';
+    var pstr = '';
+    var fstr = '';
+
     var digitIdx = 0;
     var digit = 0;
     var nxtDigit = 0;
     var words = [];
+    var words2 = [];
+    var price = '';
+    var fraction = '';
     var re = /(0|([1-9]\d*))(\.\d+)?/g;
-    if (re.test(price)) {
-      price = price.split('.')[0];
-      for (digitIdx = price.length - 1; digitIdx >= 0; digitIdx--) {
-        switch (
-          ((digit = Number(price[digitIdx]) - 0),
-          (nxtDigit = digitIdx > 0 ? Number(price[digitIdx - 1]) - 0 : 0),
-          price.length - digitIdx - 1)
-        ) {
-          case 0:
-            words.push(handle_utlc(digit, nxtDigit, ''));
-            break;
-          case 1:
-            words.push(handle_tens(digit, price[digitIdx + 1]));
-            break;
-          case 2:
-            words.push(
-              0 != digit
-                ? ' ' +
-                    sglDigit[digit] +
-                    ' Hundred' +
-                    (0 != Number(price[digitIdx + 1]) &&
-                    0 != Number(price[digitIdx + 2])
-                      ? ' and '
-                      : '')
-                : ''
-            );
-            break;
-          case 3:
-            words.push(handle_utlc(digit, nxtDigit, 'Thousand'));
-            break;
-          case 4:
-            words.push(handle_tens(digit, price[digitIdx + 1]));
-            break;
-          case 5:
-            words.push(handle_utlc(digit, nxtDigit, 'Lakh'));
-            break;
-          case 6:
-            words.push(handle_tens(digit, price[digitIdx + 1]));
-            break;
-          case 7:
-            words.push(handle_utlc(digit, nxtDigit, 'Crore'));
-            break;
-          case 8:
-            words.push(handle_tens(digit, price[digitIdx + 1]));
-            break;
-          case 9:
-            words.push(handle_utlc(digit, nxtDigit, 'Arab'));
-            break;
-          case 10:
-            words.push(handle_tens(digit, price[digitIdx + 1]));
-            break;
-          case 11:
-            words.push(handle_utlc(digit, nxtDigit, 'Kharab'));
-            break;
-          case 12:
-            words.push(handle_tens(digit, price[digitIdx + 1]));
-            break;
-          case 13:
-            words.push(handle_utlc(digit, nxtDigit, 'Nil'));
-            break;
-          case 14:
-            words.push(handle_tens(digit, price[digitIdx + 1]));
-            break;
-          case 15:
-            words.push(handle_utlc(digit, nxtDigit, 'Padma'));
-            break;
-          case 16:
-            words.push(handle_tens(digit, price[digitIdx + 1]));
-            break;
-          case 17:
-            words.push(handle_utlc(digit, nxtDigit, 'Shankh'));
-            break;
-          case 18:
-            words.push(handle_tens(digit, price[digitIdx + 1]));
-            break;
-          case 19:
-            words.push(
-              0 != digit
-                ? ' ' +
-                    sglDigit[digit] +
-                    ' Hundred' +
-                    (0 != Number(price[digitIdx + 1]) &&
-                    0 != Number(price[digitIdx + 2])
-                      ? ' and'
-                      : '')
-                : ''
-            );
-            break;
-          case 20:
-            words.push(handle_utlc(digit, nxtDigit, 'Thousand'));
-            break;
-          case 21:
-            words.push(handle_tens(digit, price[digitIdx + 1]));
-            break;
-          case 22:
-            words.push(handle_utlc(digit, nxtDigit, 'Lakh'));
-            break;
-          case 23:
-            words.push(handle_tens(digit, price[digitIdx + 1]));
-            break;
+    if (re.test(amount)) {
+      price = amount.split('.')[0];
+      fraction = amount.split('.')[1];
+
+      if (price != null && price != undefined) {
+        for (digitIdx = price.length - 1; digitIdx >= 0; digitIdx--) {
+          switch (
+            ((digit = Number(price[digitIdx]) - 0),
+            (nxtDigit = digitIdx > 0 ? Number(price[digitIdx - 1]) - 0 : 0),
+            price.length - digitIdx - 1)
+          ) {
+            case 0:
+              words.push(handle_utlc(digit, nxtDigit, ''));
+              break;
+            case 1:
+              words.push(handle_tens(digit, price[digitIdx + 1]));
+              break;
+            case 2:
+              words.push(
+                0 != digit
+                  ? ' ' +
+                      sglDigit[digit] +
+                      ' Hundred' +
+                      (0 != Number(price[digitIdx + 1]) &&
+                      0 != Number(price[digitIdx + 2])
+                        ? ' and '
+                        : '')
+                  : ''
+              );
+              break;
+            case 3:
+              words.push(handle_utlc(digit, nxtDigit, 'Thousand'));
+              break;
+            case 4:
+              words.push(handle_tens(digit, price[digitIdx + 1]));
+              break;
+            case 5:
+              words.push(handle_utlc(digit, nxtDigit, 'Lakh'));
+              break;
+            case 6:
+              words.push(handle_tens(digit, price[digitIdx + 1]));
+              break;
+            case 7:
+              words.push(handle_utlc(digit, nxtDigit, 'Crore'));
+              break;
+            case 8:
+              words.push(handle_tens(digit, price[digitIdx + 1]));
+              break;
+            case 9:
+              words.push(handle_utlc(digit, nxtDigit, 'Arab'));
+              break;
+            case 10:
+              words.push(handle_tens(digit, price[digitIdx + 1]));
+              break;
+            case 11:
+              words.push(handle_utlc(digit, nxtDigit, 'Kharab'));
+              break;
+            case 12:
+              words.push(handle_tens(digit, price[digitIdx + 1]));
+              break;
+            case 13:
+              words.push(handle_utlc(digit, nxtDigit, 'Nil'));
+              break;
+            case 14:
+              words.push(handle_tens(digit, price[digitIdx + 1]));
+              break;
+            case 15:
+              words.push(handle_utlc(digit, nxtDigit, 'Padma'));
+              break;
+            case 16:
+              words.push(handle_tens(digit, price[digitIdx + 1]));
+              break;
+            case 17:
+              words.push(handle_utlc(digit, nxtDigit, 'Shankh'));
+              break;
+            case 18:
+              words.push(handle_tens(digit, price[digitIdx + 1]));
+              break;
+            case 19:
+              words.push(
+                0 != digit
+                  ? ' ' +
+                      sglDigit[digit] +
+                      ' Hundred' +
+                      (0 != Number(price[digitIdx + 1]) &&
+                      0 != Number(price[digitIdx + 2])
+                        ? ' and'
+                        : '')
+                  : ''
+              );
+              break;
+            case 20:
+              words.push(handle_utlc(digit, nxtDigit, 'Thousand'));
+              break;
+            case 21:
+              words.push(handle_tens(digit, price[digitIdx + 1]));
+              break;
+            case 22:
+              words.push(handle_utlc(digit, nxtDigit, 'Lakh'));
+              break;
+            case 23:
+              words.push(handle_tens(digit, price[digitIdx + 1]));
+              break;
+          }
         }
+        pstr = words.reverse().join('');
+        pstr = pstr + ' Rupeess ';
       }
-      str = words.reverse().join('');
+
+      if (fraction != null && fraction != undefined) {
+        for (digitIdx = fraction.length - 1; digitIdx >= 0; digitIdx--) {
+          switch (
+            ((digit = Number(fraction[digitIdx]) - 0),
+            (nxtDigit = digitIdx > 0 ? Number(fraction[digitIdx - 1]) - 0 : 0),
+            fraction.length - digitIdx - 1)
+          ) {
+            case 0:
+              words2.push(handle_utlc(digit, nxtDigit, ''));
+              break;
+            case 1:
+              words2.push(handle_tens(digit, fraction[digitIdx + 1]));
+              break;
+          }
+        }
+        fstr = words2.reverse().join('');
+        fstr = fstr + ' Paisa Only';
+        pstr = pstr + ' and';
+      } else {
+        pstr = pstr + ' Only';
+      }
+      str = pstr + fstr;
     } else str = '';
     return str;
+  }
+
+  public convertAmountToAmericanWord(amout: string) {
+    var amount = amount.toString();
   }
 }
