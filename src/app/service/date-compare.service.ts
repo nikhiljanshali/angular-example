@@ -24,10 +24,6 @@ export class DateCompareService {
   ): string {
     const dateOne = this.datePipe.transform(new Date(inputDate), 'dd/MM/yyyy');
     const dateTwo = this.datePipe.transform(new Date(), 'dd/MM/yyyy');
-
-    console.info('Input Date => ', dateOne);
-    console.info('Today Date => ', dateTwo);
-
     let flag: string = '';
     // 1. Abstract equality check
     if (this.compareValidator.EqualTo == compareType) {
@@ -76,10 +72,6 @@ export class DateCompareService {
   ): string {
     const dateOne = this.datePipe.transform(new Date(inputDate), 'hh:mm:ss');
     const dateTwo = this.datePipe.transform(new Date(), 'hh:mm:ss');
-
-    console.info('Input Time => ', dateOne);
-    console.info('Current Time => ', dateTwo);
-
     let flag: string = '';
     // 1. Abstract equality check
     if (this.compareValidator.EqualTo == compareType) {

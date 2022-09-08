@@ -272,7 +272,7 @@ export class CurrencytowordService {
                       ' Hundred' +
                       (0 != Number(price[digitIdx + 1]) &&
                       0 != Number(price[digitIdx + 2])
-                        ? ' and '
+                        ? ' '
                         : '')
                   : ''
               );
@@ -333,7 +333,7 @@ export class CurrencytowordService {
                       ' Hundred' +
                       (0 != Number(price[digitIdx + 1]) &&
                       0 != Number(price[digitIdx + 2])
-                        ? ' and'
+                        ? ' '
                         : '')
                   : ''
               );
@@ -524,12 +524,12 @@ export class CurrencytowordService {
           }
 
           /* Add 'and' string after units or tens integer if: */
-          if (ints[0] || ints[1]) {
-            /* Chunk has a hundreds integer or chunk is the first of multiple chunks */
-            if (ints[2] || (!i && chunksLen)) {
-              // pwords.push(and);
-            }
-          }
+          // if (ints[0] || ints[1]) {
+          //   /* Chunk has a hundreds integer or chunk is the first of multiple chunks */
+          //   if (ints[2] || (!i && chunksLen)) {
+          //     pwords.push(and);
+          //   }
+          // }
 
           /* Add hundreds word if array item exists */
           if ((word = units[ints[2]])) {

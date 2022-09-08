@@ -111,7 +111,6 @@ export class DateCompareComponent implements OnInit {
           this.todaysDate,
           CompareValidator.EqualTo
         ) == CompareValueValidator.$Equal;
-      console.info(this.dateCompare);
     }
     if (this.selected.id == CompareValidator.StrictEqualTo) {
       this.dateCompare =
@@ -119,7 +118,6 @@ export class DateCompareComponent implements OnInit {
           this.todaysDate,
           CompareValidator.StrictEqualTo
         ) == CompareValueValidator.$Equal;
-      console.info(this.dateCompare);
     }
     if (this.selected.id == CompareValidator.GreaterThan) {
       this.dateCompare =
@@ -127,7 +125,6 @@ export class DateCompareComponent implements OnInit {
           this.todaysDate,
           CompareValidator.GreaterThan
         ) == CompareValueValidator.$GreaterThan;
-      console.info(this.dateCompare);
     }
     if (this.selected.id == CompareValidator.LessThan) {
       this.dateCompare =
@@ -135,7 +132,6 @@ export class DateCompareComponent implements OnInit {
           this.todaysDate,
           CompareValidator.LessThan
         ) == CompareValueValidator.$LessThan;
-      console.info(this.dateCompare);
     }
   }
 }
