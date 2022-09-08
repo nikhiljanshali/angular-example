@@ -185,9 +185,8 @@ export class CurrencytowordService {
     }
   }
 
-
   public convertAmountToIndianWord(amount: string) {
-    amount = amount.toString().replace(/[, ]/g, '');;
+    amount = amount.toString().replace(/[, ]/g, '');
     var sglDigit = [
         'Zero',
         'One',
@@ -273,7 +272,7 @@ export class CurrencytowordService {
                       ' Hundred' +
                       (0 != Number(price[digitIdx + 1]) &&
                       0 != Number(price[digitIdx + 2])
-                        ? ' and '
+                        ? ' And '
                         : '')
                   : ''
               );
@@ -334,7 +333,7 @@ export class CurrencytowordService {
                       ' Hundred' +
                       (0 != Number(price[digitIdx + 1]) &&
                       0 != Number(price[digitIdx + 2])
-                        ? ' and'
+                        ? ' And'
                         : '')
                   : ''
               );
@@ -374,7 +373,7 @@ export class CurrencytowordService {
         }
         fstr = words2.reverse().join('');
         fstr = fstr + ' Paisa Only';
-        pstr = pstr + ' and';
+        pstr = pstr + ' And';
       } else {
         pstr = pstr + ' Only';
       }
@@ -525,13 +524,16 @@ export class CurrencytowordService {
           }
 
           /* Add 'and' string after units or tens integer if: */
-          if (ints[0] || ints[1]) {
+          console.log(ints[1]);
+          if (ints[1]) {
             /* Chunk has a hundreds integer or chunk is the first of multiple chunks */
             if (ints[2] || (!i && chunksLen)) {
               pwords.push(and);
             }
           }
-
+          if (ints[0]) {
+            pwords = pwords;
+          }
           /* Add hundreds word if array item exists */
           if ((word = units[ints[2]])) {
             pwords.push(word + ' Hundred');
