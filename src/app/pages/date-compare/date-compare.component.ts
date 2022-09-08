@@ -26,7 +26,7 @@ export class DateCompareComponent implements OnInit {
   public selected: any;
 
   public dateCompare: any;
-  public dataMatch: any;
+  public dataMatch: string = '-';
 
   constructor(
     private datePipe: DatePipe,
@@ -37,7 +37,7 @@ export class DateCompareComponent implements OnInit {
   ngOnInit() {
     this.compareDate = this.datePipe.transform(
       this.todaysDate,
-      'dd/MM/yyyy  hh:mm:ss z'
+      'dd/MM/yyyy  hh:mm:ss'
     );
 
     this._compareValidator =
@@ -52,7 +52,7 @@ export class DateCompareComponent implements OnInit {
     this.todaysDate.setDate(new Date().getDate() + this.counter);
     this.compareDate = this.datePipe.transform(
       this.todaysDate,
-      'dd/MM/yyyy  hh:mm:ss z'
+      'dd/MM/yyyy  hh:mm:ss'
     );
   }
 
@@ -64,7 +64,7 @@ export class DateCompareComponent implements OnInit {
     this.todaysDate.setDate(new Date().getDate() + this.counter);
     this.compareDate = this.datePipe.transform(
       this.todaysDate,
-      'dd/MM/yyyy  hh:mm:ss z'
+      'dd/MM/yyyy  hh:mm:ss'
     );
   }
 
@@ -75,7 +75,7 @@ export class DateCompareComponent implements OnInit {
     this.todaysDate = new Date();
     this.compareDate = this.datePipe.transform(
       this.todaysDate,
-      'dd/MM/yyyy  hh:mm:ss z'
+      'dd/MM/yyyy  hh:mm:ss'
     );
     console.clear();
   }

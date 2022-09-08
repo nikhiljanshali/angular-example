@@ -2,7 +2,7 @@
   <div class="col-12 p-5">
     <ul class="list-group">
       <li class="list-group-item list-group-item" aria-current="true">
-        <label class="fw-bold mt-2">Today's Date : {{ todaysDate }}</label>
+        <!-- <label class="fw-bold mt-2">Today's Date : {{ todaysDate }}</label> -->
         <div class="input-group mt-3 mb-3">
           <button
             class="btn btn-outline-secondary"
@@ -63,7 +63,10 @@
         </div>
       </li>
       <li class="list-group-item list-group-item" aria-current="true">
-        <div>Date Match with {{ dataMatch }} :: {{ dateCompare }}</div>
+        <div>
+          Date Match with :: {{ dataMatch }} ::
+          {{ dateCompare == true ? 'Match' : 'Unmatch' }}
+        </div>
       </li>
     </ul>
   </div>
