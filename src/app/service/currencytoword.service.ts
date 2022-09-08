@@ -185,8 +185,9 @@ export class CurrencytowordService {
     }
   }
 
+
   public convertAmountToIndianWord(amount: string) {
-    amount = amount.toString();
+    amount = amount.toString().replace(/[, ]/g, '');;
     var sglDigit = [
         'Zero',
         'One',
@@ -383,29 +384,33 @@ export class CurrencytowordService {
   }
 
   public convertAmountToAmericanWord(amount: string) {
-    var string = amount.toString(),
-      units,
-      tens,
-      scales,
-      start,
-      end,
-      chunks,
-      chunksLen,
-      chunk,
-      ints,
-      i,
-      word,
-      words,
-      and = 'And';
+    var string = amount.toString();
+    var units;
+    var tens;
+    var scales;
+    var start;
+    var end;
+    var chunks;
+    var chunksLen;
+    var chunk;
+    var ints;
+    var i;
+    var word;
+    var words;
+    var pwords;
+    var fwords;
+    var and = ' And';
 
     /* Remove spaces and commas */
     var pstr = '';
     var fstr = '';
     var array = [];
     string = string.replace(/[, ]/g, '');
+
     array = string.split('.');
     pstr = array[0];
     fstr = array[1];
+
     /* Is number zero? */
     if (parseInt(pstr) === 0) {
       return 'zero';
@@ -477,63 +482,131 @@ export class CurrencytowordService {
     ];
 
     /* Split user argument into 3 digit chunks from right to left */
-    start = string.length;
-    chunks = [];
-    while (start > 0) {
-      end = start;
-      chunks.push(string.slice((start = Math.max(0, start - 3)), end));
-    }
+    if (pstr != null && pstr != undefined) {
+      start = pstr.length;
+      chunks = [];
+      while (start > 0) {
+        end = start;
+        chunks.push(pstr.slice((start = Math.max(0, start - 3)), end));
+      }
+      /* Check if function has enough scale words to be able to stringify the user argument */
+      chunksLen = chunks.length;
+      if (chunksLen > scales.length) {
+        return '';
+      }
 
-    /* Check if function has enough scale words to be able to stringify the user argument */
-    chunksLen = chunks.length;
-    if (chunksLen > scales.length) {
-      return '';
-    }
+      /* Stringify each integer in each chunk */
+      pwords = [];
+      for (i = 0; i < chunksLen; i++) {
+        chunk = parseInt(chunks[i]);
 
-    /* Stringify each integer in each chunk */
-    words = [];
-    for (i = 0; i < chunksLen; i++) {
-      chunk = parseInt(chunks[i]);
+        if (chunk) {
+          /* Split chunk into array of individual integers */
+          ints = chunks[i].split('').reverse().map(parseFloat);
 
-      if (chunk) {
-        /* Split chunk into array of individual integers */
-        ints = chunks[i].split('').reverse().map(parseFloat);
+          /* If tens integer is 1, i.e. 10, then add 10 to units integer */
+          if (ints[1] === 1) {
+            ints[0] += 10;
+          }
 
-        /* If tens integer is 1, i.e. 10, then add 10 to units integer */
-        if (ints[1] === 1) {
-          ints[0] += 10;
-        }
+          /* Add scale word if chunk is not zero and array item exists */
+          if ((word = scales[i])) {
+            pwords.push(word);
+          }
 
-        /* Add scale word if chunk is not zero and array item exists */
-        if ((word = scales[i])) {
-          words.push(word);
-        }
+          /* Add unit word if array item exists */
+          if ((word = units[ints[0]])) {
+            pwords.push(word);
+          }
 
-        /* Add unit word if array item exists */
-        if ((word = units[ints[0]])) {
-          words.push(word);
-        }
+          /* Add tens word if array item exists */
+          if ((word = tens[ints[1]])) {
+            pwords.push(word);
+          }
 
-        /* Add tens word if array item exists */
-        if ((word = tens[ints[1]])) {
-          words.push(word);
-        }
+          /* Add 'and' string after units or tens integer if: */
+          if (ints[0] || ints[1]) {
+            /* Chunk has a hundreds integer or chunk is the first of multiple chunks */
+            if (ints[2] || (!i && chunksLen)) {
+              pwords.push(and);
+            }
+          }
 
-        /* Add 'and' string after units or tens integer if: */
-        if (ints[0] || ints[1]) {
-          /* Chunk has a hundreds integer or chunk is the first of multiple chunks */
-          if (ints[2] || (!i && chunksLen)) {
-            words.push(and);
+          /* Add hundreds word if array item exists */
+          if ((word = units[ints[2]])) {
+            pwords.push(word + ' Hundred');
           }
         }
-
-        /* Add hundreds word if array item exists */
-        if ((word = units[ints[2]])) {
-          words.push(word + ' Hundred');
-        }
       }
+      pwords = pwords.reverse().join(' ');
+      pwords += ' Dollers ';
     }
 
-    return words.reverse().join(' ');
+    if (fstr != null && fstr != undefined) {
+      start = fstr.length;
+      chunks = [];
+      while (start > 0) {
+        end = start;
+        chunks.push(fstr.slice((start = Math.max(0, start - 3)), end));
+      }
+      /* Check if function has enough scale words to be able to stringify the user argument */
+      chunksLen = chunks.length;
+      if (chunksLen > scales.length) {
+        return '';
+      }
+
+      /* Stringify each integer in each chunk */
+      fwords = [];
+      for (i = 0; i < chunksLen; i++) {
+        chunk = parseInt(chunks[i]);
+
+        if (chunk) {
+          /* Split chunk into array of individual integers */
+          ints = chunks[i].split('').reverse().map(parseFloat);
+
+          /* If tens integer is 1, i.e. 10, then add 10 to units integer */
+          if (ints[1] === 1) {
+            ints[0] += 10;
+          }
+
+          /* Add scale word if chunk is not zero and array item exists */
+          if ((word = scales[i])) {
+            fwords.push(word);
+          }
+
+          /* Add unit word if array item exists */
+          if ((word = units[ints[0]])) {
+            fwords.push(word);
+          }
+
+          /* Add tens word if array item exists */
+          if ((word = tens[ints[1]])) {
+            fwords.push(word);
+          }
+
+          /* Add 'and' string after units or tens integer if: */
+          if (ints[0] || ints[1]) {
+            /* Chunk has a hundreds integer or chunk is the first of multiple chunks */
+            if (ints[2] || (!i && chunksLen)) {
+              fwords.push(and);
+            }
+          }
+
+          /* Add hundreds word if array item exists */
+          if ((word = units[ints[2]])) {
+            fwords.push(word + ' Hundred');
+          }
+        }
+      }
+      fwords = fwords.reverse().join(' ');
+      fwords += ' Cents ';
+      fwords += ' Only';
+    } else {
+      fwords = ' Only ';
+    }
+
+    words = pwords + fwords;
+
+    return words;
   }
 }
