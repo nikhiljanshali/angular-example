@@ -296,16 +296,14 @@ export class CurrencytowordService {
         );
       };
 
-    var str = '',
-      digitIdx = 0,
-      digit = 0,
-      nxtDigit = 0,
-      words = [];
+    var str = '';
+    var digitIdx = 0;
+    var digit = 0;
+    var nxtDigit = 0;
+    var words = [];
     var re = /(0|([1-9]\d*))(\.\d+)?/g;
     if (re.test(price)) {
-      var arr = price.split('.');
-      console.log(arr);
-      price = arr[0];
+      price = price.split('.')[0];
       for (digitIdx = price.length - 1; digitIdx >= 0; digitIdx--) {
         switch (
           ((digit = Number(price[digitIdx]) - 0),
@@ -326,7 +324,7 @@ export class CurrencytowordService {
                     ' Hundred' +
                     (0 != Number(price[digitIdx + 1]) &&
                     0 != Number(price[digitIdx + 2])
-                      ? ' and'
+                      ? ' and '
                       : '')
                 : ''
             );
@@ -349,42 +347,36 @@ export class CurrencytowordService {
           case 8:
             words.push(handle_tens(digit, price[digitIdx + 1]));
             break;
-
           case 9:
             words.push(handle_utlc(digit, nxtDigit, 'Arab'));
             break;
           case 10:
             words.push(handle_tens(digit, price[digitIdx + 1]));
             break;
-
           case 11:
             words.push(handle_utlc(digit, nxtDigit, 'Kharab'));
             break;
           case 12:
             words.push(handle_tens(digit, price[digitIdx + 1]));
             break;
-
           case 13:
             words.push(handle_utlc(digit, nxtDigit, 'Nil'));
             break;
           case 14:
             words.push(handle_tens(digit, price[digitIdx + 1]));
             break;
-
           case 15:
             words.push(handle_utlc(digit, nxtDigit, 'Padma'));
             break;
           case 16:
             words.push(handle_tens(digit, price[digitIdx + 1]));
             break;
-
           case 17:
             words.push(handle_utlc(digit, nxtDigit, 'Shankh'));
             break;
           case 18:
             words.push(handle_tens(digit, price[digitIdx + 1]));
             break;
-
           case 19:
             words.push(
               0 != digit
