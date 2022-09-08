@@ -8,7 +8,7 @@ import { CurrencytowordService } from '../../service/currencytoword.service';
   styleUrls: ['./amount-word.component.scss'],
 })
 export class AmountWordComponent implements OnInit {
-  amount: number = 5555.55;
+  amount: number = 92233720368547800;
   indianWord: String = '';
   americanWord: String = '';
 
@@ -19,9 +19,8 @@ export class AmountWordComponent implements OnInit {
     this.indianWord = this.currencytowordService.convertAmountToIndianWord(
       this.amount.toString()
     );
-    this.americanWord = this.currencytowordService.convertAmoutToWord(
-      this.amount,
-      listCurrencyType.USD
+    this.americanWord = this.currencytowordService.convertAmountToAmericanWord(
+      this.amount.toString()
     );
   }
 
@@ -30,9 +29,8 @@ export class AmountWordComponent implements OnInit {
     this.indianWord = this.currencytowordService.convertAmountToIndianWord(
       this.amount.toString()
     );
-    this.americanWord = this.currencytowordService.convertAmoutToWord(
-      this.amount,
-      listCurrencyType.USD
+    this.americanWord = this.currencytowordService.convertAmountToAmericanWord(
+      this.amount.toString()
     );
   }
 }
