@@ -25,7 +25,7 @@ export class DateCompareComponent implements OnInit {
   public _compareValidator: Array<{ id: string; name: string }> = [];
   public selected: any;
 
-  public dateCompare: boolean= false;
+  public dateCompare: boolean = false;
   public dataMatch: string = '-';
 
   constructor(
